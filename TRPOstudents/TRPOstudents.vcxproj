@@ -119,15 +119,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MyForm.cpp" />
-    <ClCompile Include="Sessia.cpp" />
-    <ClCompile Include="Source.cpp" />
-    <ClCompile Include="StudentModel.cpp" />
-    <ClCompile Include="Subject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="Rating.h" />
+    <ClInclude Include="Sessia.h" />
+    <ClInclude Include="SQLHandler.h" />
+    <ClInclude Include="Student.h" />
+    <ClInclude Include="Subject.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MyForm.resx">

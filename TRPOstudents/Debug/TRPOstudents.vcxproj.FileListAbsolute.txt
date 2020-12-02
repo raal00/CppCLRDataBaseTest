@@ -1,0 +1,3 @@
+C:\Users\Ivan\source\repos\TRPOstudents\TRPOstudents\Debug\TRPOstudents.MyForm.resources
+C:\Users\Ivan\source\repos\TRPOstudents\TRPOstudents\Debug\TRPOstudents.vcxproj.GenerateResource.cache
+C:\Users\Ivan\source\repos\TRPOstudents\TRPOstudents\Debug\TRPOstudents.vcxprojAssemblyReference.cache
