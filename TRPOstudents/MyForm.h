@@ -60,6 +60,9 @@ namespace TRPOstudents {
 	private: System::Windows::Forms::TextBox^ findStudentId;
 	private: System::Windows::Forms::Label^ label8;
 	private: System::Windows::Forms::Button^ searcjStudentBtn;
+	private: System::Windows::Forms::Button^ Task9;
+	private: System::Windows::Forms::Button^ Task13;
+	private: System::Windows::Forms::Button^ Task14;
 
 
 
@@ -76,6 +79,7 @@ namespace TRPOstudents {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MyForm::typeid));
 			this->ShowGroupListBtn = (gcnew System::Windows::Forms::Button());
 			this->EditStudentBtn = (gcnew System::Windows::Forms::Button());
 			this->AddNewStudentBtn = (gcnew System::Windows::Forms::Button());
@@ -98,6 +102,9 @@ namespace TRPOstudents {
 			this->findStudentId = (gcnew System::Windows::Forms::TextBox());
 			this->label8 = (gcnew System::Windows::Forms::Label());
 			this->searcjStudentBtn = (gcnew System::Windows::Forms::Button());
+			this->Task9 = (gcnew System::Windows::Forms::Button());
+			this->Task13 = (gcnew System::Windows::Forms::Button());
+			this->Task14 = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// ShowGroupListBtn
@@ -288,12 +295,60 @@ namespace TRPOstudents {
 			this->searcjStudentBtn->UseVisualStyleBackColor = true;
 			this->searcjStudentBtn->Click += gcnew System::EventHandler(this, &MyForm::searcjStudentBtn_Click);
 			// 
+			// Task9
+			// 
+			this->Task9->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"Task9.BackgroundImage")));
+			this->Task9->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->Task9->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
+			this->Task9->Location = System::Drawing::Point(879, 234);
+			this->Task9->Name = L"Task9";
+			this->Task9->Size = System::Drawing::Size(129, 90);
+			this->Task9->TabIndex = 22;
+			this->Task9->Text = L"Списко студентов, не получивших 4";
+			this->Task9->TextAlign = System::Drawing::ContentAlignment::BottomCenter;
+			this->Task9->UseVisualStyleBackColor = true;
+			this->Task9->Click += gcnew System::EventHandler(this, &MyForm::Task9_Click);
+			// 
+			// Task13
+			// 
+			this->Task13->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"Task13.BackgroundImage")));
+			this->Task13->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->Task13->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
+			this->Task13->Location = System::Drawing::Point(744, 234);
+			this->Task13->Name = L"Task13";
+			this->Task13->Size = System::Drawing::Size(129, 90);
+			this->Task13->TabIndex = 23;
+			this->Task13->Text = L"Список неуспевающих за последний семестр (4 курс)";
+			this->Task13->TextAlign = System::Drawing::ContentAlignment::BottomCenter;
+			this->Task13->UseVisualStyleBackColor = true;
+			this->Task13->Click += gcnew System::EventHandler(this, &MyForm::Task13_Click);
+			// 
+			// Task14
+			// 
+			this->Task14->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"Task14.BackgroundImage")));
+			this->Task14->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->Task14->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
+			this->Task14->Location = System::Drawing::Point(609, 234);
+			this->Task14->Name = L"Task14";
+			this->Task14->Size = System::Drawing::Size(129, 90);
+			this->Task14->TabIndex = 24;
+			this->Task14->Text = L"Список отличников";
+			this->Task14->TextAlign = System::Drawing::ContentAlignment::BottomCenter;
+			this->Task14->UseVisualStyleBackColor = true;
+			this->Task14->Click += gcnew System::EventHandler(this, &MyForm::Task14_Click);
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::ActiveCaption;
 			this->ClientSize = System::Drawing::Size(1020, 469);
+			this->Controls->Add(this->Task14);
+			this->Controls->Add(this->Task13);
+			this->Controls->Add(this->Task9);
 			this->Controls->Add(this->searcjStudentBtn);
 			this->Controls->Add(this->label8);
 			this->Controls->Add(this->findStudentId);
@@ -408,5 +463,47 @@ namespace TRPOstudents {
 			}
 		}
 	}
+private: System::Void Task14_Click(System::Object^ sender, System::EventArgs^ e) {
+	StudentList->Items->Clear();
+	SQLHandler^ handler = gcnew SQLHandler();
+	array<Student^>^ students = handler->GetTask14();
+	if (students == nullptr) {
+		MessageBox::Show("Студентов не найдено", "Сообщение", MessageBoxButtons::OK, MessageBoxIcon::Information);
+	}
+	else {
+		for (int i = 0; i < students->Length; i++) {
+
+			StudentList->Items->Add(students[i]->GetFNameAndBithday());
+		}
+	}
+}
+private: System::Void Task13_Click(System::Object^ sender, System::EventArgs^ e) {
+	StudentList->Items->Clear();
+	SQLHandler^ handler = gcnew SQLHandler();
+	array<Student^>^ students = handler->GetTask13();
+	if (students == nullptr) {
+		MessageBox::Show("Студентов не найдено", "Сообщение", MessageBoxButtons::OK, MessageBoxIcon::Information);
+	}
+	else {
+		for (int i = 0; i < students->Length; i++) {
+
+			StudentList->Items->Add(students[i]->GetFNameAndCourse());
+		}
+	}
+}
+private: System::Void Task9_Click(System::Object^ sender, System::EventArgs^ e) {
+	StudentList->Items->Clear();
+	SQLHandler^ handler = gcnew SQLHandler();
+	array<Student^>^ students = handler->GetTask9();
+	if (students == nullptr) {
+		MessageBox::Show("Студентов не найдено", "Сообщение", MessageBoxButtons::OK, MessageBoxIcon::Information);
+	}
+	else {
+		for (int i = 0; i < students->Length; i++) {
+
+			StudentList->Items->Add(students[i]->GetFNameAndBithday());
+		}
+	}
+}
 };
 }

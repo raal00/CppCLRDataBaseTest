@@ -23,4 +23,12 @@ public:
 				Group + "\t" + 
 				Course.ToString();
 	}
+	String^ GetFNameAndBithday() {
+		return	FName + "\t" +
+				Bithday;
+	}
+	String^ GetFNameAndCourse() {
+		return	FName + "\t" +
+				Course;
+	}
 };
